@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Transaction</title>
+    <link rel="stylesheet" href="../projet/transaction.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Transactions</h1>
+        
+        <!-- Section pour afficher les transactions -->
+        <div class="transactions-list">
+            <h2>Dernière transaction</h2>
+            <div class="transaction-details">
+                <!-- Exemple de transaction -->
+                <div class="transaction-item">
+                    <p><strong>Description:</strong> Achat de livres</p>
+                    <p><strong>Montant:</strong> 50 €</p>
+                    <p><strong>Date:</strong> 10 novembre 2024</p>
+                </div>
+                <!-- Autres transactions peuvent être ajoutées ici -->
+            </div>
+            <button class="btn" id="show-details-btn">Voir en détail</button>
+        </div>
+
+        <!-- Bouton pour ajouter une transaction -->
+        <button class="btn" id="add-transaction-btn">Ajouter une transaction</button>
+
+        <!-- Formulaire caché pour ajouter une transaction -->
+        <div class="form-container" id="form-container">
+            <h2>Ajouter une Transaction</h2>
+            <form id="transaction-form">
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" required>
+
+                <label for="amount">Montant:</label>
+                <input type="number" id="amount" name="amount" required>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <button type="submit" class="btn">Ajouter</button>
+                <button type="button" class="btn" id="cancel-btn">Annuler</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../projet/transaction.js"></script>
+</body>
+</html>
