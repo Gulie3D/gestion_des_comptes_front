@@ -1,52 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de Transaction</title>
-    <link rel="stylesheet" href="../projet/transaction.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des Transactions Bancaires</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Transactions</h1>
-        
-        <!-- Section pour afficher les transactions -->
-        <div class="transactions-list">
-            <h2>Dernière transaction</h2>
-            <div class="transaction-details">
-                <!-- Exemple de transaction -->
-                <div class="transaction-item">
-                    <p><strong>Description:</strong> Achat de livres</p>
-                    <p><strong>Montant:</strong> 50 €</p>
-                    <p><strong>Date:</strong> 10 novembre 2024</p>
-                </div>
-                <!-- Autres transactions peuvent être ajoutées ici -->
-            </div>
-            <button class="btn" id="show-details-btn">Voir en détail</button>
-        </div>
+  <div class="container">
+    <h1>Gestion des Transactions Bancaires</h1>
 
-        <!-- Bouton pour ajouter une transaction -->
-        <button class="btn" id="add-transaction-btn">Ajouter une transaction</button>
+    <!-- Formulaire pour Ajouter une Transaction -->
+    <div class="add-transaction">
+      <h2>Ajouter une Transaction</h2>
+      <form id="transaction-form">
+        <label for="transaction-type">Type :</label>
+        <select id="transaction-type" required>
+          <option value="dépôt">Dépôt</option>
+          <option value="retrait">Retrait</option>
+        </select>
 
-        <!-- Formulaire caché pour ajouter une transaction -->
-        <div class="form-container" id="form-container">
-            <h2>Ajouter une Transaction</h2>
-            <form id="transaction-form">
-                <label for="description">Description:</label>
-                <input type="text" id="description" name="description" required>
+        <label for="transaction-amount">Montant :</label>
+        <input type="number" id="transaction-amount" min="0.01" step="0.01" required>
 
-                <label for="amount">Montant:</label>
-                <input type="number" id="amount" name="amount" required>
+        <label for="transaction-date">Date :</label>
+        <input type="date" id="transaction-date" required>
 
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
-
-                <button type="submit" class="btn">Ajouter</button>
-                <button type="button" class="btn" id="cancel-btn">Annuler</button>
-            </form>
-        </div>
+        <button type="submit">Ajouter</button>
+      </form>
+      <p id="transaction-error" style="color: red; display: none;">Erreur : Solde insuffisant pour ce retrait.</p>
     </div>
 
-    <script src="../projet/transaction.js"></script>
+    <!-- Filtres de Période -->
+    <div class="filters">
+      <label for="filter-period">Filtrer par période :</label>
+      <select id="filter-period">
+        <option value="7">7 derniers jours</option>
+        <option value="30">30 derniers jours</option>
+        <option value="90">90 derniers jours</option>
+      </select>
+      <button id="apply-period-filter">Appliquer le filtre</button>
+    </div>
+
+    <!-- Tableau des Transactions -->
+    <table id="transaction-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Montant</th>
+          <th>Solde après transaction</th>
+        </tr>
+      </thead>
+      <tbody id="transaction-body">
+        <!-- Les transactions seront ajoutées ici via JavaScript -->
+      </tbody>
+    </table>
+    <p id="no-transactions-message" style="display: none;">Aucune transaction trouvée.</p>
+
+    <!-- Bouton pour Télécharger l'Historique en CSV -->
+    <button id="download-csv">Télécharger l'historique (CSV)</button>
+  </div>
 </body>
 </html>
